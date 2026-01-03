@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
-import { IMAGES } from '../constants';
+import { IMAGES, GOOGLE_SCRIPT_URL } from '../constants';
 
 const RSVP: React.FC = () => {
   const navigate = useNavigate();
@@ -13,9 +13,6 @@ const RSVP: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [totalConfirmed, setTotalConfirmed] = useState<number | null>(null);
-
-  // PLACEHOLDER URL - User needs to replace this with their deployed Web App URL
-  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx9d6mkDB1UowBON5zD4DX7wGimJEI5DV4r2vYu2eR5m6dI-5kkZc9stPmDDsoAFdCUSA/exec';
 
   React.useEffect(() => {
     const fetchGuestCount = async () => {

@@ -16,3 +16,5 @@ export const IMAGES = {
     "https://picsum.photos/seed/guest3/100/100"
   ]
 };
+
+export const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw7QIX7SSRq__-vlAsI5IZAJHXtToHyEDLvu6v6Nl1BlOCxM_cmb3r9-5mhJPQZKOILMg/exec";
