@@ -7,7 +7,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="relative flex flex-col h-screen w-full bg-pattern overflow-hidden">
+    <div className="relative flex flex-col min-h-screen w-full bg-pattern overflow-x-hidden">
       {/* Decorative Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute -top-[10%] -left-[10%] w-[50vh] h-[50vh] rounded-full bg-gradient-to-br from-primary/5 to-transparent blur-3xl opacity-60"></div>
