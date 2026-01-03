@@ -12,34 +12,8 @@ const RSVP: React.FC = () => {
   const [notes, setNotes] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [totalConfirmed, setTotalConfirmed] = useState<number | null>(null);
-
-  React.useEffect(() => {
-    const fetchGuestCount = async () => {
-      try {
-        // If placeholder, simulate a random number for demo purposes
-        if (GOOGLE_SCRIPT_URL.includes('placeholder')) {
-           // Simulate network delay
-           await new Promise(resolve => setTimeout(resolve, 1000));
-           // Start with 42 (from design) and add some random mock increments
-           setTotalConfirmed(42 + Math.floor(Math.random() * 5));
-           return;
-        }
-
-        const response = await fetch(GOOGLE_SCRIPT_URL);
-        const data = await response.json();
-        if (data && typeof data.count === 'number') {
-          setTotalConfirmed(data.count);
-        }
-      } catch (error) {
-        console.error('Error fetching guest count:', error);
-        // Fallback or just keep loading state if preferred
-        setTotalConfirmed(42); 
-      }
-    };
-
-    fetchGuestCount();
-  }, []);
+  // PLACEHOLDER URL - User needs to replace this with their deployed Web App URL
+  // const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx9d6mkDB1UowBON5zD4DX7wGimJEI5DV4r2vYu2eR5m6dI-5kkZc9stPmDDsoAFdCUSA/exec';
 
   const handleAddGuest = () => {
     setGuests([...guests, '']);
@@ -71,21 +45,14 @@ const RSVP: React.FC = () => {
     };
 
     try {
-      // For now, we simulate success if the URL is placeholder, but attempt the fetch
-      // effectively documenting how it should work.
-      if (GOOGLE_SCRIPT_URL.includes('placeholder')) {
-        console.log('Mock Submission:', formData);
-        await new Promise(resolve => setTimeout(resolve, 1500));
-      } else {
-        await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors', // Important for Google Apps Script
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData)
-        });
-      }
+      await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Important for Google Apps Script
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+      });
 
       setIsSubmitted(true);
       setTimeout(() => {
@@ -134,40 +101,10 @@ const RSVP: React.FC = () => {
         </div>
       </div>
 
-      <div className="px-6 py-2">
+      <div className="px-6 py-2 mb-6">
         <p className="text-text-muted dark:text-gray-300 text-base font-normal leading-relaxed text-center">
           Mal podemos esperar para celebrar essa nova fase com você! Por favor, confirme sua presença abaixo.
         </p>
-      </div>
-
-      {/* Confirmed Guests Widget */}
-      <div className="px-4 py-4">
-        <div className="flex items-center justify-between rounded-2xl p-5 bg-white dark:bg-surface-dark border border-gray-100 dark:border-white/5 shadow-sm">
-          <div className="flex flex-col gap-1">
-            <p className="text-text-muted dark:text-gray-400 text-[10px] font-bold uppercase tracking-widest">Amigos Confirmados</p>
-            <div className="flex items-baseline gap-2">
-              <p className="text-text-main dark:text-white text-4xl font-bold leading-tight">
-                {totalConfirmed === null ? (
-                   <span className="animate-pulse opacity-50">...</span>
-                ) : (
-                  totalConfirmed
-                )}
-              </p>
-              <p className="text-success text-[10px] font-bold bg-success/10 px-2 py-0.5 rounded-full flex items-center gap-1">
-                <span className="material-symbols-outlined text-[14px]">trending_up</span>
-                +3 hoje
-              </p>
-            </div>
-          </div>
-          <div className="flex -space-x-3">
-            {IMAGES.AVATARS.map((src, i) => (
-              <img key={i} src={src} className="w-10 h-10 border-2 border-white dark:border-surface-dark rounded-full object-cover" alt="Guest" />
-            ))}
-            <div className="flex items-center justify-center w-10 h-10 text-xs font-bold text-white bg-primary border-2 border-white dark:border-surface-dark rounded-full">
-              +{totalConfirmed ? Math.max(0, totalConfirmed - 3) : 39}
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Form */}
