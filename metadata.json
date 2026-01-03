@@ -1,0 +1,7 @@
+{
+  "name": "Chá de Casa Nova - Julia & Kaique",
+  "description": "A beautiful and interactive housewarming party invitation app with event details, countdown, RSVP form, gift list, and contact information.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
