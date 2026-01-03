@@ -84,12 +84,12 @@ const Details: React.FC = () => {
           </div>
           <h3 className="text-[#181111] dark:text-white text-xl font-bold">Localização</h3>
           <p className="text-[#181111]/70 dark:text-white/70 text-base max-w-[80%] leading-snug">
-            R. São Luís, 83 – Jardim São Francisco<br/>São Paulo – SP
+            R. São Luís, 77 – Jardim São Francisco<br/>São Paulo – SP
           </p>
         </div>
         <div className="grid grid-cols-2 gap-4">
           <a 
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("R. São Luís, 83 – Jardim São Francisco, São Paulo – SP")}`}
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("R. São Luís, 77 – Jardim São Francisco, São Paulo – SP")}`}
             target="_blank" 
             rel="noopener noreferrer"
             className="flex items-center justify-center gap-2 h-12 px-4 rounded-full border border-gray-200 dark:border-white/20 bg-white dark:bg-white/5 hover:bg-gray-50 dark:hover:bg-white/10 transition-colors group"

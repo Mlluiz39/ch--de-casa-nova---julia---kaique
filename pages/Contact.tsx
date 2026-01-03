@@ -66,10 +66,10 @@ const Contact: React.FC = () => {
           </div>
           <div className="flex-1">
             <h4 className="text-sm font-bold text-[#181111] dark:text-white mb-1">Localização</h4>
-            <p className="text-sm text-gray-500 dark:text-gray-400 leading-snug">Rua São Luis, 83 - Jardim São Francisco<br/>São Paulo, SP</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 leading-snug">Rua São Luis, 77 - Jardim São Francisco<br/>São Paulo, SP</p>
           </div>
           <button 
-            onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Rua São Luis, 83 - Jardim São Francisco, São Paulo, SP")}`, '_blank')}
+            onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent("Rua São Luis, 77 - Jardim São Francisco, São Paulo, SP")}`, '_blank')}
             className="text-secondary hover:text-secondary/80 font-bold text-sm self-center active:scale-95 transition-colors"
           >
             Ver mapa

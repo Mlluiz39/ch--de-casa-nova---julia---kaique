@@ -21,13 +21,22 @@ const AppContent: React.FC = () => {
   );
 };
 
+import { MusicProvider } from './contexts/MusicContext';
+import { ThemeProvider } from './contexts/ThemeContext';
+import BackgroundMusic from './components/BackgroundMusic';
+
 const App: React.FC = () => {
   return (
-    <HashRouter>
-      <div className="min-h-screen w-full flex justify-center items-center bg-gray-100 dark:bg-black/90 p-0 sm:p-4">
-        <AppContent />
-      </div>
-    </HashRouter>
+    <ThemeProvider>
+      <MusicProvider>
+        <HashRouter>
+          <div className="min-h-screen w-full flex justify-center items-center bg-gray-100 dark:bg-black/90 p-0 sm:p-4 transition-colors duration-300">
+            <BackgroundMusic />
+            <AppContent />
+          </div>
+        </HashRouter>
+      </MusicProvider>
+    </ThemeProvider>
   );
 };
 

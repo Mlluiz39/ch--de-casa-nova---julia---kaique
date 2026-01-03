@@ -3,24 +3,35 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IMAGES } from '../constants';
 
+import { useMusic } from '../contexts/MusicContext';
+import ThemeToggle from '../components/ThemeToggle';
+
 const Home: React.FC = () => {
   const navigate = useNavigate();
+  const { isPlaying, toggleMusic } = useMusic();
 
   return (
-    <div className="relative flex flex-col min-h-screen w-full bg-pattern overflow-x-hidden">
+    <div className="relative flex flex-col min-h-screen w-full bg-pattern overflow-x-hidden transition-colors duration-300">
       {/* Decorative Background Elements */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <div className="absolute -top-[10%] -left-[10%] w-[50vh] h-[50vh] rounded-full bg-gradient-to-br from-primary/5 to-transparent blur-3xl opacity-60"></div>
         <div className="absolute -bottom-[10%] -right-[10%] w-[60vh] h-[60vh] rounded-full bg-gradient-to-tl from-secondary/5 to-transparent blur-3xl opacity-60"></div>
       </div>
 
-      {/* Header: Music Toggle */}
-      <div className="relative z-10 flex justify-end pt-8 px-6 pb-2 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
-        <button aria-label="Toggle Music" className="group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/80 dark:bg-white/10 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 active:scale-95">
+      {/* Header: Toggles */}
+      <div className="relative z-10 flex justify-end items-center gap-3 pt-8 px-6 pb-2 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
+        <ThemeToggle />
+        <button 
+          aria-label="Toggle Music" 
+          onClick={toggleMusic}
+          className="group relative flex items-center justify-center w-10 h-10 rounded-full bg-white/80 dark:bg-white/10 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 active:scale-95"
+        >
           <span className="material-symbols-outlined text-primary group-hover:scale-110 transition-transform text-[20px]">
-            music_note
+            {isPlaying ? 'music_note' : 'music_off'}
           </span>
-          <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-background-dark animate-pulse"></span>
+          {isPlaying && (
+            <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white dark:border-background-dark animate-pulse"></span>
+          )}
         </button>
       </div>
 
